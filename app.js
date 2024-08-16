@@ -1,0 +1,38 @@
+const express = require("express");
+const dotEnv = require("dotenv");
+const cors = require("cors");
+const morgan = require("morgan");
+// import File
+const connectDB = require("./config/db");
+const authRoutes = require("./api/routes/authRoutes");
+// Load Config
+dotEnv.config({ path: "./config/config.env" });
+// Connect to MongoDB
+connectDB();
+// Start Express
+const app = express();
+// Logging
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("dev"));
+}
+app.use(express.json());
+app.use(
+  cors((req, callback) => {
+    const origin = allowedOrigins.includes(req.header("Origin"))
+      ? req.header("Origin")
+      : false;
+    callback(null, { origin, credentials: true });
+  })
+);
+app.get("/", (req, res) => {
+  res.send("Hello World from Express.js");
+});
+// Routes
+app.use("/api/auth", authRoutes);
+// Select a port
+const PORT = process.env.PORT || 3000;
+// Start server
+
+app.listen(PORT, () => {
+  console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
+});
