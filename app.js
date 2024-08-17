@@ -4,7 +4,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 // import File
 const connectDB = require("./config/db");
-const authRoutes = require("./api/routes/authRoutes");
+const selectRoutes = require("./api/routes/courseRoutes");
 // Load Config
 dotEnv.config({ path: "./config/config.env" });
 // Connect to MongoDB
@@ -28,7 +28,7 @@ app.get("/", (req, res) => {
   res.send("Hello World from Express.js");
 });
 // Routes
-app.use("/api/auth", authRoutes);
+app.use("/api/select", selectRoutes); // Select-related routes
 // Select a port
 const PORT = process.env.PORT || 3000;
 // Start server
