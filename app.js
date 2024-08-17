@@ -4,11 +4,16 @@ const cors = require("cors");
 const morgan = require("morgan");
 // import File
 const connectDB = require("./config/db");
-const selectRoutes = require("./api/routes/courseRoutes");
+const selectRoutes = require("./api/routes/selectRoutes");
 // Load Config
 dotEnv.config({ path: "./config/config.env" });
 // Connect to MongoDB
 connectDB();
+// cors
+const allowedOrigins = [
+  'http://localhost:3001',
+  'http://yourdomain.com',
+];
 // Start Express
 const app = express();
 // Logging

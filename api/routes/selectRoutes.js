@@ -1,17 +1,17 @@
 const express = require("express");
 const router = express.Router();
 const {
-  createCourse,
-  getAllCourses,
-  updateCourse,
-  deleteCourse,
-  getCourseById,
+  createSelect,
+  getSelect,
+  getSelectById,
+  updateSelect,
+  deleteSelect,
 } = require("../controllers/selectController");
 
 // Example routes for select
-router.post("/", createCourse);
-// router.get("/", getAllCourses);
-// router.get("/:id", getCourseById);
-// router.put("/:id", updateCourse);
-// router.delete("/:id", deleteCourse);
+router.post('/', createSelect);
+router.get('/', getSelect);
+router.get('/:id', getSelectById);
+router.put('/:id', updateSelect);
+router.delete('/:id', deleteSelect);
 module.exports = router;
