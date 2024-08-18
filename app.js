@@ -5,6 +5,9 @@ const morgan = require("morgan");
 // import File
 const connectDB = require("./config/db");
 const selectRoutes = require("./api/routes/selectRoutes");
+const foldersRoutes = require("./api/routes/foldersRoutes");
+const surveyRoutes = require("./api/routes/surveyRoutes");
+const welcomeRoutes = require("./api/routes/welcomeRoutes");
 // Load Config
 dotEnv.config({ path: "./config/config.env" });
 // Connect to MongoDB
@@ -34,6 +37,9 @@ app.get("/", (req, res) => {
 });
 // Routes
 app.use("/api/select", selectRoutes); // Select-related routes
+app.use("/api/folders", foldersRoutes); // folders-related routes
+app.use("/api/survey", surveyRoutes); // survey-related routes
+app.use("/api/welcome", welcomeRoutes); // welcome-related routes
 // Select a port
 const PORT = process.env.PORT || 3000;
 // Start server
